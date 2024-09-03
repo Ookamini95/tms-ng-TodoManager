@@ -1,0 +1,10 @@
+<div [ngClass]="{'slot': true}" [attr.data-swapy-slot]="slot()">
+  @if (item()) {
+    <div class="item bg-gray-400" [attr.data-swapy-item]="item()">
+      @if(handle()) {
+      <div class="handle" data-swapy-handle></div>
+      }
+      <ng-content />
+    </div>
+  }
+</div>
