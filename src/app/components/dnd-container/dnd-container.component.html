@@ -6,7 +6,7 @@
                 [cdkDropListConnectedTo]="[completedList, activeList]" (cdkDropListDropped)="drop($event)"
                 class="flex flex-col" id="pending">
                 @for (todo of pending; track todo) {
-                <app-dnd-slot [todo]="todo" />
+                <!-- <app-dnd-slot [todo]="todo" /> -->
                 <!-- <div class="size-24 bg-green-400 ring-2 ring-black" cdkDrag [cdkDragData]="todo">{{todo}}</div>
                 <div class="size-24 bg-green-400 ring-2 ring-black" cdkDrag [cdkDragData]="todo">{{todo}}</div>
                 <div class="size-24 bg-green-400 ring-2 ring-black" cdkDrag [cdkDragData]="todo">{{todo}}</div> -->
@@ -14,14 +14,14 @@
             </div>
         </div>
     </div>
-
+<!-- TODO: styles -->
     <div class="h-screen grid grid-rows-[10px, 1fr]">
         <h2>Work in progress</h2>
         <div cdkDropList #activeList="cdkDropList" [cdkDropListData]="active"
             [cdkDropListConnectedTo]="[completedList, pendingList]" (cdkDropListDropped)="drop($event)"
             class="example-list" id="active">
             @for (todo of active; track todo) {
-            <app-dnd-slot [todo]="todo" />
+            <!-- <app-dnd-slot [todo]="todo" /> -->
             }
         </div>
     </div>

@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, computed, ElementRef, OnInit, viewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { createSwapy } from "swapy";
 import { DndContainerComponent } from './components/dnd-container/dnd-container.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DndSlotComponent } from './components/dnd-container/dnd-slot/dnd-slot.component';
+import { Todo } from '@shared/models/todo.model';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,17 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
   imports: [
     RouterOutlet,
     DndContainerComponent,
-    MatSlideToggleModule
+    DndSlotComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
+// TODO remove swappy
+  exampleTodo: Todo = {
+    id: 1,
+    status: "pending",
+    title: "Test 2",
+    description: "lorem ipsum",
+  }
 }

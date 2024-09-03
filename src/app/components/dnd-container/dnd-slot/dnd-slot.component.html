@@ -1,1 +1,19 @@
-<div class="size-24 bg-green-400 ring-2 ring-black" cdkDrag [cdkDragData]="todo">{{ todo() }}</div>
+<div class="size-32 bg-green-400 ring-2 ring-white/15 cursor-grab rounded-3xl" cdkDrag
+    [cdkDragData]="todo">
+    <div class="p-4">
+        <div class="card bg-slate-200 text-primary-content w-96 hover:shadow-sm hover:shadow-slate-800/70">
+            <div class="card-body">
+                <h2 class="card-title line-clamp-1">{{ todo().title }}
+                    ASDSDASDASAD
+                    SADDASSADSAD
+                    ASDDASSDASADASD
+                </h2>
+                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <div class="card-actions justify-end">
+                    <button class="btn">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
