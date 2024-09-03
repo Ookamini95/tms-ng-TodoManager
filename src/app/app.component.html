@@ -1,24 +1,6 @@
-<div #container2 class="container container-2">
-  <!-- <div class="slot a" data-swapy-slot="1">
-    <div class="item a" data-swapy-item="a">
-      <div class="handle" data-swapy-handle></div>
-    </div>
-  </div> -->
+<!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
 
-  <app-dnd-slot [slot]="1" [item]="'a'" [handle]="true">
-    <div>A</div>
-  </app-dnd-slot>
-  <app-dnd-slot [slot]="2" [item]="'b'">
-    <div>B</div>
-  </app-dnd-slot>
-  <app-dnd-slot [slot]="3" [item]="'c'">
-    <div>C</div>
-  </app-dnd-slot>
-  <app-dnd-slot [slot]="4" [item]="'d'">
-    <div>D</div>
-  </app-dnd-slot>
 
+<div class="p-10 size-1/2 overflow-hidden">
+  <app-dnd-container />
 </div>
-
-
-<app-dnd-container />

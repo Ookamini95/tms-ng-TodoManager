@@ -2,7 +2,7 @@ import { AfterViewInit, Component, computed, ElementRef, OnInit, viewChild } fro
 import { RouterOutlet } from '@angular/router';
 import { createSwapy } from "swapy";
 import { DndContainerComponent } from './components/dnd-container/dnd-container.component';
-import { DndSlotComponent } from './components/dnd-container/dnd-slot/dnd-slot.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-root',
@@ -10,34 +10,11 @@ import { DndSlotComponent } from './components/dnd-container/dnd-slot/dnd-slot.c
   imports: [
     RouterOutlet,
     DndContainerComponent,
-    DndSlotComponent
+    MatSlideToggleModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements AfterViewInit {
-
-  _container2 = viewChild<ElementRef<HTMLDivElement>>("container2");
-  container2 = computed(() => this._container2()?.nativeElement);
-
-
-  ngAfterViewInit(): void {
-    console.log(this.container2());
-
-  
-    const swap2 = createSwapy(this.container2() as Element, {
-      animation: 'dynamic',
-      continuousMode: false
-    })
-
-    swap2.onSwap((event) => {
-      console.log('swapy2 event', event.data)
-    })
-
-    console.log(swap2);
-
-
-  }
-
+export class AppComponent {
 
 }

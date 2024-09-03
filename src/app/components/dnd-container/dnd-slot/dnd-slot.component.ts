@@ -1,21 +1,15 @@
-import { NgClass } from '@angular/common';
-import { Component, input, OnInit } from '@angular/core';
+import { CdkDrag } from '@angular/cdk/drag-drop';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-dnd-slot',
   standalone: true,
   imports: [
-    NgClass
+    CdkDrag
   ],
   templateUrl: './dnd-slot.component.html',
-  styleUrl: '../../../app.component.css'
+  styleUrl: './dnd-slot.component.css'
 })
-export class DndSlotComponent implements OnInit {
-  handle = input<boolean>(false);
-  item = input.required<string>();
-  slot = input.required<number>();
-  
-  ngOnInit() {
-    console.log("slot : ", this.slot(), "item : ", this.item());
-  }
+export class DndSlotComponent {
+  todo = input.required<string>();
 }
