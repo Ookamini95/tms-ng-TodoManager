@@ -1,6 +1,17 @@
 import { Todo, TodoStatus } from "../todo.model";
 
-export type TodoAction = { action: TodoOrderAction, data: Todo, status?: TodoStatus };
+export type TodoAction = 
+{
+    action: TodoDatabaseAction,
+    data: Todo,
+} | TodoUpdateAction;
 
-export type TodoOrderAction = "todo/move" | "todo/transfer";
 export type TodoDatabaseAction = "todo/create" | "todo/delete" | "todo/update";
+export type TodoUpdateAction = {
+    action: "todo/update",
+    data: Todo,
+    // Updated variables
+    status?: TodoStatus,
+    title?: string,
+    description?: string
+}

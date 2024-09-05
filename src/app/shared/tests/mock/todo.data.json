@@ -26,13 +26,13 @@
         },
         {
             "id": 5,
-            "status": "completed",
+            "status": "active",
             "title": "Test 5",
             "description": "lorem ipsum"
         },
         {
             "id": 6,
-            "status": "completed",
+            "status": "active",
             "title": "Test 6",
             "description": "lorem ipsum"
         },

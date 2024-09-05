@@ -4,7 +4,7 @@ import { DndContainerComponent } from './components/dnd-container/dnd-container.
 import { DndSlotComponent } from './components/dnd-container/dnd-slot/dnd-slot.component';
 import { Todo, TodoStatus } from '@shared/models/todo.model';
 import { ApiService } from '@shared/services/data/api.service';
-import { TodoAction } from '@shared/models/actions/todo.action';
+import { TodoUpdateAction } from '@shared/models/actions/todo.action';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     this._todos.set(await this.api.getTodos());
   }
 
-  updateTodos(a: TodoAction) {
+  updateTodos(a: TodoUpdateAction) {
     this._todos.update(prev => {
       if (!prev) return [];
       return prev.map(todo => todo.id === a.data.id ? { ...todo, status: a.status! } : todo);
