@@ -2,6 +2,7 @@
     <input
         #inputEdit
         (blur)="handleBlur()"
+        (change)="handleChange($event)"
         [type]="_inputType()"
         [value]="inputValue()"
         [readOnly]="!_editMode()"

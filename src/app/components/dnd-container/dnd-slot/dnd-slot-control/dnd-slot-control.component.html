@@ -1,0 +1,17 @@
+<div class="flex flex-1 justify-center items-center gap-2 cursor-pointer bg-slate-300 p-2 rounded-full">
+
+    <div [hidden]="!_isOpen()!">
+        <form class="flex justify-center items-center gap-3">
+            <input (change)="changedStatus($event)" type="radio" name="status" id="pending"
+                class="radio radio-error !ring-1 !ring-white" [checked]="todoStatus() === 'pending'" />
+            <input (change)="changedStatus($event)" type="radio" name="status" id="active"
+                class="radio radio-warning !ring-1 !ring-white" [checked]="todoStatus() === 'active'" />
+            <input (change)="changedStatus($event)" type="radio" name="status" id="completed"
+                class="radio radio-success !ring-1 !ring-white" [checked]="todoStatus() === 'completed'" />
+        </form>
+    </div>
+
+    <div (click)="toggle()" [ngClass]="openMenuAnimation()">
+        <i class="pi pi-chevron-left"></i>
+    </div>
+</div>

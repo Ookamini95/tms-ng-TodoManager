@@ -27,7 +27,6 @@ import { TodoAction, TodoUpdateAction } from '@shared/models/actions/todo.action
   styleUrl: './dnd-container.component.css'
 })
 export class DndContainerComponent {
-  cdr = inject(ChangeDetectorRef);
   // TODO output for mutated todo
   // Pending Todos
   pending = input<Todo[] | undefined>(); // TODO: undefined during loading
@@ -70,6 +69,7 @@ export class DndContainerComponent {
   drop(event: CdkDragDrop<string[]>) {
     this.onDropTransfer.emit({
       action: "todo/update",
+      id: event.item.data.id,
       data: event.item.data,
       status: event.container.id as TodoStatus,
     })

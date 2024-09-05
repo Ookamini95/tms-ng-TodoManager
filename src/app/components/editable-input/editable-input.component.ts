@@ -1,4 +1,5 @@
-import { Component, computed, ElementRef, input, signal, viewChild } from '@angular/core';
+import { Component, computed, ElementRef, HostListener, input, output, signal, viewChild } from '@angular/core';
+import { TodoAction } from '@shared/models/actions/todo.action';
 
 export type InputType = 
   | 'text'
@@ -14,10 +15,11 @@ export type InputType =
 })
 export class EditableInputComponent {
 
+  todoId = input.required<number>();
   inputType = input<InputType>("text");
   inputValue = input<any>("");
 
-  inputTag = input<string | undefined>(undefined); // TODO: used to track mutations on data
+  valueChanged = output<TodoAction>(); // TODO instead use todoservice
 
   _inputElement = viewChild<ElementRef<HTMLInputElement>>("inputEdit");
   inputElement = computed(() => this._inputElement()?.nativeElement);
@@ -27,13 +29,32 @@ export class EditableInputComponent {
     if (this.inputType() === "password") return this.inputType(); // TODO: password
     return this._editMode() ? this.inputType() : 'text' as InputType;
   });
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter' && this._editMode()) {
+      this._reset();
+    }
+  }
+  
   handleEditMode() {
     this._editMode.update(prev => !prev);
     if (this._editMode()) this.inputElement()?.focus();
   }
   handleBlur() {
+    this._reset();
+  }
+  handleChange(e: any) {
+    this.valueChanged.emit({
+      action: "todo/update",
+      id: this.todoId(),
+      title: e.target.value,
+    })
+  }
+  private _reset() {
     this.inputElement()!.selectionStart = 0;
     this.inputElement()!.selectionEnd = 0;
+    this.inputElement()?.blur();
     this._editMode.set(false);
   }
 }
