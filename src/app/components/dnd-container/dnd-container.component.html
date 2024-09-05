@@ -1,38 +1,32 @@
 <div class="flex flex-row">
-    <div class="h-screen grid grid-rows-[40px]">
-        <p class="text-xl">Pending</p>
-        <div class="overflow-y-scroll h-full" id="drop-pending">
-            <div cdkDropList #pendingList="cdkDropList" [cdkDropListData]="pending"
-                [cdkDropListConnectedTo]="[completedList, activeList]" (cdkDropListDropped)="drop($event)"
-                class="flex flex-col" id="pending">
-                @for (todo of pending; track todo) {
-                <!-- <app-dnd-slot [todo]="todo" /> -->
-                <!-- <div class="size-24 bg-green-400 ring-2 ring-black" cdkDrag [cdkDragData]="todo">{{todo}}</div>
-                <div class="size-24 bg-green-400 ring-2 ring-black" cdkDrag [cdkDragData]="todo">{{todo}}</div>
-                <div class="size-24 bg-green-400 ring-2 ring-black" cdkDrag [cdkDragData]="todo">{{todo}}</div> -->
-                }
-            </div>
-        </div>
-    </div>
-<!-- TODO: styles -->
-    <div class="h-screen grid grid-rows-[10px, 1fr]">
-        <h2>Work in progress</h2>
-        <div cdkDropList #activeList="cdkDropList" [cdkDropListData]="active"
-            [cdkDropListConnectedTo]="[completedList, pendingList]" (cdkDropListDropped)="drop($event)"
-            class="example-list" id="active">
-            @for (todo of active; track todo) {
-            <!-- <app-dnd-slot [todo]="todo" /> -->
+    <div class="h-screen grid grid-rows-[40px] grid-cols-[500px]">
+        <p class="text-xl text-center">Pending</p>
+        <!-- TODO:  @defer () {} @loading (after 100ms; minimum 1s) {} -->
+        <div cdkDropListSortingDisabled cdkDropList #pendingList="cdkDropList" [cdkDropListData]="_pendingOrdered()" [cdkDropListConnectedTo]="[activeList, completedList]"
+            (cdkDropListDropped)="drop($event)" class="flex flex-col overflow-y-scroll scroll-container h-full gap-36" id="pending">
+            @for (todo of _pending(); track todo.id) {
+            <app-dnd-slot [todo]="todo" />
+            }
+            @empty {
+                Todo: empty for some reasons 
             }
         </div>
     </div>
-    <div class="h-screen grid grid-rows-[10px, 1fr]">
-        <h2>Completed</h2>
-
-        <div cdkDropList #completedList="cdkDropList" [cdkDropListData]="completed"
-            [cdkDropListConnectedTo]="[pendingList, activeList]" (cdkDropListDropped)="drop($event)"
-            class="example-list" id="completed">
-            @for (todo of completed; track todo) {
-            <div class="" cdkDrag [cdkDragData]="todo">{{todo}}</div>
+    <div class="h-screen grid grid-rows-[40px] grid-cols-[500px]">
+        <p class="text-xl">Active</p>
+        <div cdkDropListSortingDisabled cdkDropList #activeList="cdkDropList" [cdkDropListData]="_activeOrdered()" [cdkDropListConnectedTo]="[pendingList, completedList]"
+            (cdkDropListDropped)="drop($event)" class="flex flex-col overflow-y-scroll scroll-container h-full gap-36" id="active">
+            @for (todo of _active(); track todo.id) {
+                <app-dnd-slot [todo]="todo" />
+            }
+        </div>
+    </div>
+    <div class="h-screen grid grid-rows-[40px] grid-cols-[500px]">
+        <p class="text-xl">Completed</p>
+        <div cdkDropListSortingDisabled cdkDropList #completedList="cdkDropList" [cdkDropListData]="_completedOrdered()" [cdkDropListConnectedTo]="[pendingList, activeList]"
+            (cdkDropListDropped)="drop($event)" class="flex flex-col overflow-y-scroll scroll-container h-full gap-36" id="completed">
+            @for (todo of _completed(); track todo.id) {
+                <app-dnd-slot [todo]="todo" />
             }
         </div>
     </div>

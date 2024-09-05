@@ -1,9 +1,5 @@
 <!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
 
-
-<div class="p-10 size-1/2 overflow-hidden">
-  <!-- <app-dnd-container /> -->
-    <app-dnd-slot [todo]="exampleTodo"/>
-    <!-- <app-dnd-slot [todo]="exampleTodo"/>
-    <app-dnd-slot [todo]="exampleTodo"/> -->
+<div class="">
+  <app-dnd-container [pending]="_pending()" [active]="_active()" [completed]="_completed()" (onDropTransfer)="updateTodos($event)" />
 </div>

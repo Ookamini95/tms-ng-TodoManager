@@ -1,13 +1,8 @@
-<div class="size-32 bg-green-400 ring-2 ring-white/15 cursor-grab rounded-3xl" cdkDrag
-    [cdkDragData]="todo">
+<div [ngClass]="styles()" cdkDrag (cdkDragEntered)="onDragEnter($event)" [cdkDragData]="todo()">
     <div class="p-4">
         <div class="card bg-slate-200 text-primary-content w-96 hover:shadow-sm hover:shadow-slate-800/70">
             <div class="card-body">
-                <h2 class="card-title line-clamp-1">{{ todo().title }}
-                    ASDSDASDASAD
-                    SADDASSADSAD
-                    ASDDASSDASADASD
-                </h2>
+                <app-editable-input [inputType]="'text'" [inputValue]="todo().title" />
                 <p>If a dog chews shoes whose shoes does he choose?</p>
                 <div class="card-actions justify-end">
                     <button class="btn">Buy Now</button>
@@ -15,5 +10,4 @@
             </div>
         </div>
     </div>
-
 </div>

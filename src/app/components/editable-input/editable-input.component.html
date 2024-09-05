@@ -1,0 +1,14 @@
+<div class="relative w-[95%] -ml-4 font-bold opacity-85">
+    <input
+        #inputEdit
+        (blur)="handleBlur()"
+        [type]="_inputType()"
+        [value]="inputValue()"
+        [readOnly]="!_editMode()"
+        class="important-outline-none input input-ghost w-full max-w-xs focus:text-black focus:bg-slate-400/80 !pr-12 !overflow-x-scroll"
+    />
+    
+    <button [hidden]="_editMode()" class="absolute bottom-1/4 right-5">
+        <i (click)="handleEditMode()" class="pi pi-pen-to-square"></i>
+    </button>
+</div>

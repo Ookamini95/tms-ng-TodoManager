@@ -1,0 +1,5 @@
+.cdk-drag-placeholder.fix {
+    opacity: 0.2;
+    max-height: 0px;
+    overflow: hidden;
+}

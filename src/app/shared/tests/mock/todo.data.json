@@ -1,0 +1,46 @@
+{
+    "todos": [
+        {
+            "id": 1,
+            "status": "pending",
+            "title": "Test 1",
+            "description": "lorem ipsum"
+        },
+        {
+            "id": 2,
+            "status": "pending",
+            "title": "Test 2",
+            "description": "lorem ipsum"
+        },
+        {
+            "id": 3,
+            "status": "pending",
+            "title": "Test 3",
+            "description": "lorem ipsum"
+        },
+        {
+            "id": 4,
+            "status": "active",
+            "title": "Test 4",
+            "description": "lorem ipsum"
+        },
+        {
+            "id": 5,
+            "status": "completed",
+            "title": "Test 5",
+            "description": "lorem ipsum"
+        },
+        {
+            "id": 6,
+            "status": "completed",
+            "title": "Test 6",
+            "description": "lorem ipsum"
+        },
+        {
+            "id": 7,
+            "status": "active",
+            "title": "Test 7",
+            "description": "lorem ipsum"
+        }
+    ]
+}
