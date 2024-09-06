@@ -4,6 +4,7 @@ import { DndContainerComponent } from './components/dnd-container/dnd-container.
 import { DndSlotComponent } from './components/dnd-container/dnd-slot/dnd-slot.component';
 import { TodoStatus } from '@shared/models/todo.model';
 import { TodoService } from '@shared/services/data/todos.service';
+import { ModalTodoComponent } from '@components/modal/modal-todo/modal-todo.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { TodoService } from '@shared/services/data/todos.service';
     RouterOutlet,
     DndContainerComponent,
     DndSlotComponent,
+    ModalTodoComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

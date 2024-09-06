@@ -1,0 +1,32 @@
+<app-modal>
+    <form [formGroup]="todoForm" (submit)="handleSubmit(todoForm)">
+        <label class="form-control w-full max-w-xs py-4">
+            <div class="label">
+                <span class="label-text text-black">Title</span>
+            </div>
+            <input type="text" placeholder="Title" name="title" id="title" formControlName="title"
+                class="input input-bordered bg-slate-200 text-black w-full max-w-xs" />
+        </label>
+
+        <label class="form-control">
+            <div class="label">
+                <span class="label-text text-black">Description</span>
+            </div>
+            <textarea maxlength="70" class="textarea textarea-bordered bg-slate-200 h-fit max-h-28" placeholder="Bio"></textarea>
+        </label>
+
+        <label class="form-control w-full max-w-xs py-4">
+            <div class="label">
+                <span class="label-text text-black">Status</span>
+            </div>
+            <select class="select bg-slate-200 w-full max-w-xs" name="status" id="status"
+                formControlName="status">
+                <option value="pending" selected>Pending</option>
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+            </select>
+        </label>
+
+        <button type="submit"> Ok </button>
+    </form>
+</app-modal>

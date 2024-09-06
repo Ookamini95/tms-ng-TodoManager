@@ -1,10 +1,10 @@
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { NgClass } from '@angular/common';
-import { AfterViewInit, Component, computed, inject, input, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, computed, inject, input, signal } from '@angular/core';
 import { EditableInputComponent } from '@components/editable-input/editable-input.component';
 import { Todo } from '@shared/models/todo.model';
 import { TodoService } from '@shared/services/data/todos.service';
-import { DnDSlotControlComponent } from './dnd-slot-control/dnd-slot-control.component';
+import { DndSlotControlComponent } from './dnd-slot-control/dnd-slot-control.component';
 
 @Component({
   selector: 'app-dnd-slot',
@@ -13,7 +13,7 @@ import { DnDSlotControlComponent } from './dnd-slot-control/dnd-slot-control.com
     NgClass,
     CdkDrag,
     EditableInputComponent,
-    DnDSlotControlComponent
+    DndSlotControlComponent
   ],
   templateUrl: './dnd-slot.component.html',
   styleUrl: './dnd-slot.component.css'
@@ -31,7 +31,7 @@ export class DndSlotComponent implements AfterViewInit {
   private _id = computed(() => this.todo().id);
 
   styles() {
-    let baseClasses = "size-32 ring-2 ring-white/15 cursor-grab rounded-3xl ";
+    let baseClasses = "h-40 w-[28rem] ring-2 ring-white/15 cursor-grab rounded-3xl ";
     if (this.dropAnimation()) baseClasses += "drop ";
     switch (this._status()) {
       case 'pending':

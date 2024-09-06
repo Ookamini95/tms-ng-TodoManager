@@ -1,0 +1,15 @@
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box bg-slate-200">
+        <ng-content />
+        <div class="modal-action">
+            <form method="dialog">
+                <button
+                    class="btn-circle btn-ghost mask mask-circle btn-sm absolute right-2 top-2 hidden sm:btn"
+                >
+                    <i class="pi pi-times"></i>
+                </button>
+                <button class="btn sm:hidden">Close</button>
+            </form>
+        </div>
+    </div>
+</dialog>

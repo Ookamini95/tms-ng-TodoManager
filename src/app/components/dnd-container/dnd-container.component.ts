@@ -10,6 +10,7 @@ import { DndSlotComponent } from './dnd-slot/dnd-slot.component';
 import { Todo, TodoStatus } from '@shared/models/todo.model';
 import { sortTodos } from './dnd.utils';
 import { TodoAction, TodoUpdateAction } from '@shared/models/actions/todo.action';
+import { DndEmptyComponent } from './dnd-empty/dnd-empty.component';
 
 // TODO: flicker when dnd from list a to list b [Workaround > deactivated animations with css + deactivated cdkOrdering]
 // https://stackoverflow.com/questions/61559834/element-style-doesnt-apply-when-using-cdkdroplist-angluar-cdk-drag-and-drop
@@ -22,6 +23,7 @@ import { TodoAction, TodoUpdateAction } from '@shared/models/actions/todo.action
     CdkDropList,
     CdkDrag,
     DndSlotComponent,
+    DndEmptyComponent
   ],
   templateUrl: './dnd-container.component.html',
   styleUrl: './dnd-container.component.css'

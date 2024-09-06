@@ -1,5 +1,5 @@
 <!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
 
-<div class="">
-  <app-dnd-container [pending]="_pending()" [active]="_active()" [completed]="_completed()" (onDropTransfer)="ts.updateTodo($event)" />
-</div>
+<app-dnd-container [pending]="_pending()" [active]="_active()" [completed]="_completed()" (onDropTransfer)="ts.updateTodo($event)" />
+
+<app-modal-todo/>

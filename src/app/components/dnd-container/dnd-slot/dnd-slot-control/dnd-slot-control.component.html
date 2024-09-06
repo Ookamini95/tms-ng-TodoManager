@@ -1,14 +1,44 @@
-<div class="flex flex-1 justify-center items-center gap-2 cursor-pointer bg-slate-300 p-2 rounded-full">
+<div
+    class="grid grid-rows-1 grid-flow-col w-[90%] gap-2 cursor-pointer border-spacing-2 border-slate-300 p-2 rounded-full">
 
     <div [hidden]="!_isOpen()!">
-        <form class="flex justify-center items-center gap-3">
-            <input (change)="changedStatus($event)" type="radio" name="status" id="pending"
-                class="radio radio-error !ring-1 !ring-white" [checked]="todoStatus() === 'pending'" />
-            <input (change)="changedStatus($event)" type="radio" name="status" id="active"
-                class="radio radio-warning !ring-1 !ring-white" [checked]="todoStatus() === 'active'" />
-            <input (change)="changedStatus($event)" type="radio" name="status" id="completed"
-                class="radio radio-success !ring-1 !ring-white" [checked]="todoStatus() === 'completed'" />
-        </form>
+        <div class="translate-y-1">
+            <label class="" for="status">
+                <div class="badge" [class.badge-success]="todoStatus() === 'completed'"
+                    [class.badge-error]="todoStatus() === 'pending'" [class.badge-warning]="todoStatus() === 'active'">
+                    {{ todoStatus() }}</div>
+            </label>
+            <form id="status" class="flex justify-end items-end gap-1">
+                <div class="lg:tooltip lg:tooltip-error scale-75" data-tip="pending">
+                    <input (change)="changedStatus($event)" type="radio" name="status" id="pending"
+                        class="radio radio-error bg-red-300/40 !ring-2 ring-red-500"
+                        [checked]="todoStatus() === 'pending'" />
+                </div>
+                <div class="lg:tooltip lg:tooltip-warning scale-75" data-tip="active">
+                    <input (change)="changedStatus($event)" type="radio" name="status" id="active"
+                        class="radio radio-warning bg-yellow-300/35 !ring-2 ring-yellow-500"
+                        [checked]="todoStatus() === 'active'" />
+                </div>
+                <div class="lg:tooltip lg:tooltip-success scale-75" data-tip="completed">
+                    <input (change)="changedStatus($event)" type="radio" name="status" id="completed"
+                        class="radio radio-success bg-green-300/35 focus-visible:ring-black !ring-2 ring-green-500"
+                        [checked]="todoStatus() === 'completed'" />
+                </div>
+                <div class="flex">
+                    <div class="lg:tooltip scale-75" data-tip="edit">
+                        <button (click)="editTodo($event)" onclick="my_modal_5.showModal()" class="btn btn-circle btn-outline btn-sm">
+                            <i class="pi pi-pencil"></i>
+                        </button>
+                    </div>
+                    <div class="lg:tooltip scale-75" data-tip="delete">
+                        <button (click)="deleteTodo($event)" class="btn btn-circle btn-outline btn-sm">
+                            <i class="pi pi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
     </div>
 
     <div (click)="toggle()" [ngClass]="openMenuAnimation()">
