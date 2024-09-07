@@ -4,7 +4,7 @@
             <div class="label">
                 <span class="label-text text-black">Title</span>
             </div>
-            <input type="text" placeholder="Title" name="title" id="title" formControlName="title"
+            <input type="text" placeholder="Title..." name="title" id="title" formControlName="title"
                 class="input input-bordered bg-slate-200 text-black w-full max-w-xs" />
         </label>
 
@@ -12,21 +12,25 @@
             <div class="label">
                 <span class="label-text text-black">Description</span>
             </div>
-            <textarea maxlength="70" class="textarea textarea-bordered bg-slate-200 h-fit max-h-28" placeholder="Bio"></textarea>
+            <textarea maxlength="70" class="textarea textarea-bordered bg-slate-200 text-slate-600 h-fit max-h-28" placeholder="Description..." name="description" id="description" formControlName="description"></textarea>
         </label>
 
         <label class="form-control w-full max-w-xs py-4">
             <div class="label">
                 <span class="label-text text-black">Status</span>
             </div>
-            <select class="select bg-slate-200 w-full max-w-xs" name="status" id="status"
+            <select class="select bg-slate-200 text-slate-600 w-full max-w-xs" name="status" id="status"
                 formControlName="status">
                 <option value="pending" selected>Pending</option>
                 <option value="active">Active</option>
                 <option value="completed">Completed</option>
             </select>
         </label>
-
-        <button type="submit"> Ok </button>
+        <div class="flex w-full justify-center items-center">
+            <button class="btn btn-outline" type="submit"> 
+                    @if (_editMode()) { Edit todo }
+                    @else { Make todo }
+            </button>
+        </div>
     </form>
 </app-modal>

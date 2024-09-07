@@ -1,8 +1,8 @@
 <div class="h-full w-full pl-8">
-    <div class="mx-auto flex flex-row gap-8">
+    <div class="max-w-[95vw] flex flex-col sm:flex-row gap-8">
 
         <div class="h-full grid-flow-col grid-rows-[auto, 1fr] overflow-clip">
-            <h2 class="text-xl w-[28rem] p-4" [class.text-blue-600]="!!pending()?.length">Pending</h2>
+            <h2 class="text-xl w-[28rem] bg-slate-200/20 text-black/40 rounded-badge p-4 my-2" [class.!text-blue-600]="!!pending()?.length">Pending</h2>
             <div cdkDropListSortingDisabled cdkDropList #pendingList="cdkDropList" [cdkDropListData]="_pendingOrdered()"
                 [cdkDropListConnectedTo]="[activeList, completedList]" (cdkDropListDropped)="drop($event)"
                 class="flex flex-col overflow-y-scroll scroll-container h-[85vh] gap-36" id="pending">
@@ -25,7 +25,7 @@
         </div>
         <!-- <div class="divider divider-horizontal -translate-x-14"></div> -->
         <div class="h-full grid-flow-col grid-rows-[auto, 1fr] overflow-clip">
-            <h2 class="text-xl w-[28rem] p-4" [class.text-blue-600]="!!active()?.length">Active</h2>
+            <h2 class="text-xl w-[28rem] bg-slate-200/20 text-black/40 rounded-badge p-4 my-2" [class.!text-blue-600]="!!active()?.length">Active</h2>
             <div cdkDropListSortingDisabled cdkDropList #activeList="cdkDropList" [cdkDropListData]="_activeOrdered()"
                 [cdkDropListConnectedTo]="[pendingList, completedList]" (cdkDropListDropped)="drop($event)"
                 class="flex flex-col overflow-y-scroll scroll-container h-[85vh] gap-36" id="active">
@@ -48,7 +48,7 @@
         </div>
         <!-- <div class="divider divider-horizontal -translate-x-14"></div> -->
         <div class="h-full grid-flow-col grid-rows-[auto, 1fr] overflow-hidden">
-            <h2 class="text-xl w-[28rem] p-4" [class.text-blue-600]="!!completed()?.length">Completed</h2>
+            <h2 class="text-xl w-[28rem] text-black/40 bg-slate-200/20 rounded-badge p-4 my-2" [class.!text-blue-600]="!!completed()?.length">Completed</h2>
             <div cdkDropListSortingDisabled cdkDropList #completedList="cdkDropList"
                 [cdkDropListData]="_completedOrdered()" [cdkDropListConnectedTo]="[pendingList, activeList]"
                 (cdkDropListDropped)="drop($event)"

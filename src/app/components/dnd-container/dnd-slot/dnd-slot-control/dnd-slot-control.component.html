@@ -1,7 +1,7 @@
 <div
     class="grid grid-rows-1 grid-flow-col w-[90%] gap-2 cursor-pointer border-spacing-2 border-slate-300 p-2 rounded-full">
 
-    <div [hidden]="!_isOpen()!">
+    <div class="transition-all" [class.animate-open]="_isOpen()" [class.animate-close]="!_isOpen()">
         <div class="translate-y-1">
             <label class="" for="status">
                 <div class="badge" [class.badge-success]="todoStatus() === 'completed'"

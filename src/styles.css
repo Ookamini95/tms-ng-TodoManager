@@ -7,8 +7,8 @@
 
 html,
 body {
-    height: 100%;
-    background-color: aquamarine;
+    height: 99vh;
+    background-color: gainsboro;
 }
 body {
     margin: 0;

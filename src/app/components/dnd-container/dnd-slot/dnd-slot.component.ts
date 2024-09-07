@@ -1,10 +1,11 @@
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { NgClass } from '@angular/common';
-import { AfterViewInit, Component, computed, inject, input, signal } from '@angular/core';
+import { AfterViewInit, Component, computed, effect, inject, input, signal } from '@angular/core';
 import { EditableInputComponent } from '@components/editable-input/editable-input.component';
 import { Todo } from '@shared/models/todo.model';
 import { TodoService } from '@shared/services/data/todos.service';
 import { DndSlotControlComponent } from './dnd-slot-control/dnd-slot-control.component';
+import { TodoAction, TodoUpdateAction } from '@shared/models/actions/todo.action';
 
 @Component({
   selector: 'app-dnd-slot',
@@ -25,10 +26,16 @@ export class DndSlotComponent implements AfterViewInit {
   todo = input.required<Todo>();
   animationIdx = input<number>();
 
+  private _status = computed(() => this.todo().status);
+  private _title = computed(() => this.todo().title);
+  private _id = computed(() => this.todo().id);
 
   private dropAnimation = signal(true);
-  private _status = computed(() => this.todo().status);
-  private _id = computed(() => this.todo().id);
+
+  onEditableTitleChange(a: TodoUpdateAction) {
+    this.ts.updateTodo(a);
+  }
+
 
   styles() {
     let baseClasses = "h-40 w-[28rem] ring-2 ring-white/15 cursor-grab rounded-3xl ";
@@ -50,13 +57,5 @@ export class DndSlotComponent implements AfterViewInit {
     setTimeout(() => {
       this.dropAnimation.set(false);
     }, this._id() * 100)
-  }
-
-  clickTest() {
-    this.ts.updateTodo({
-      action: "todo/update",
-      id: this._id(),
-      status: "completed"
-    })
   }
 }

@@ -6,10 +6,11 @@ import { TodoService } from '@shared/services/data/todos.service';
 @Component({
     selector: 'app-slot-control',
     standalone: true,
+    templateUrl: './dnd-slot-control.component.html',
+    styleUrl: './dnd-slot-control.component.css',
     imports: [
         NgClass
     ],
-    templateUrl: 'dnd-slot-control.component.html'
 })
 export class DndSlotControlComponent implements OnInit {
     protected ts = inject(TodoService);
@@ -33,7 +34,7 @@ export class DndSlotControlComponent implements OnInit {
     }
     editTodo(e: any) {
         e.preventDefault();
-        console.log("edit todo"); // TODO: open modal button
+        this.ts.selectedTodoId.set(this.todoId());
     }
     deleteTodo(e: any) {
         e.preventDefault();

@@ -1,7 +1,6 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ModalComponent } from '../modal.component';
-import { Todo } from '@shared/models/todo.model';
 import { TodoService } from '@shared/services/data/todos.service';
 
 @Component({
@@ -15,7 +14,7 @@ import { TodoService } from '@shared/services/data/todos.service';
     ]
 })
 
-export class ModalTodoComponent implements OnInit {
+export class ModalTodoComponent {
     private fb = inject(FormBuilder);
     private ts = inject(TodoService);
 
@@ -25,32 +24,64 @@ export class ModalTodoComponent implements OnInit {
         status: ["pending", Validators.required],
     })
 
-    todo = input<Todo>();
+    todoId = input.required<number>();
+    _idChangeEffect = effect(() => {
+        const id = this.todoId();
+        if (this._editMode()) {
+            const todo = this.ts._getTodo(id);
+            console.log("TODOOOO ", todo);
+            if (!todo) return;
+            this.todoForm.patchValue({
+                title: todo.title,
+                description: todo.description,
+                status: todo.status,
+            });
+        }
+    })
+    protected _editMode = computed(() => !!this.todoId()); // id starts from 1
+
+    onClose = output<boolean>();
 
     handleSubmit(form: FormGroup): void {
         if (form.invalid) return;
         console.log(form.value);
 
-        const id = this.ts.generateUuid();
-        this.ts.makeTodo({
-            action: "todo/create",
-            id,
-            data: {
+        if (!this._editMode()) {
+            const id = this.ts.generateUuid();
+            console.log("id. ", id, "data. ", form.value);
+            this.ts.makeTodo({
+                action: "todo/create",
                 id,
-                ...form.value,
-            }
-        })
+                data: {
+                    id,
+                    ...form.value,
+                }
+            })
+        }
+        else {
+            const id = this.todoId()
+            this.ts.updateTodo({
+                action: "todo/update",
+                id,
+                data: {
+                    id,
+                    ...form.value
+                },
+                ...form.value
+            })
+        }
 
+        this._resetForm(form);
+    }
+
+    protected _resetForm(form: FormGroup): void {
         form.reset();
         form.get("status")!.setValue("pending");
+        this.onClose.emit(true);
         this._closeModal();
     }
-
     private _closeModal(): void {
-        (document.getElementById("my_modal_5") as any).close();
-    }
-
-    ngOnInit() {
-
+        const modal = (document.getElementById("my_modal_5") as any);
+        if (modal) modal.close();
     }
 }

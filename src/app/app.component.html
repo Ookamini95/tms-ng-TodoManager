@@ -1,5 +1,9 @@
 <!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
 
-<app-dnd-container [pending]="_pending()" [active]="_active()" [completed]="_completed()" (onDropTransfer)="ts.updateTodo($event)" />
-
-<app-modal-todo/>
+<div class="bg-green-400/50 min-h-screen md:h-full">
+    <app-dnd-container [pending]="_pending()" [active]="_active()" [completed]="_completed()" (onDropTransfer)="ts.updateTodo($event)" />
+    
+    <app-modal-todo [todoId]="ts.selectedTodoId()"/>
+    
+    <app-side-menu/>
+</div>

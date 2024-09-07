@@ -1,5 +1,5 @@
 import { Component, computed, ElementRef, HostListener, input, output, signal, viewChild } from '@angular/core';
-import { TodoAction } from '@shared/models/actions/todo.action';
+import { TodoUpdateAction } from '@shared/models/actions/todo.action';
 
 export type InputType = 
   | 'text'
@@ -19,7 +19,7 @@ export class EditableInputComponent {
   inputType = input<InputType>("text");
   inputValue = input<any>("");
 
-  valueChanged = output<TodoAction>(); // TODO instead use todoservice
+  valueChanged = output<TodoUpdateAction>(); // TODO instead use todoservice
 
   _inputElement = viewChild<ElementRef<HTMLInputElement>>("inputEdit");
   inputElement = computed(() => this._inputElement()?.nativeElement);
