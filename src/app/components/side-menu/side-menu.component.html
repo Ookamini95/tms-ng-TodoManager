@@ -1,23 +1,41 @@
-<div class="flex flex-col-reverse fixed bottom-10 right-5 gap-10 bg-slate-950/70 md:bg-slate-950/40 p-2 rounded-badge">
-    <button (click)="handleOpenTodoModal()" onclick="my_modal_5.showModal()"
+<div class="flex flex-col-reverse fixed bottom-10 right-5 gap-10 bg-slate-950/70 md:bg-slate-950/40 p-3 rounded-full">
+    <button (click)="handleOpenTodoModal()" onclick="todo_modal.showModal()"
         class="btn btn-lg btn-circle btn-outline hover:opacity-20">
         <i class="pi pi-plus"></i>
     </button>
+
     <div class="dropdown dropdown-left">
         <div tabindex="0" role="button" class="btn btn-circle btn-outline btn-lg hover:opacity-20 ">
             <i class="pi pi-sort-alt-slash"></i>
         </div>
-        <ul tabindex="0" class="dropdown-content menu bg-slate-950/85 md:bg-base-100/40 rounded-box z-[1] w-40 p-2 mr-4 shadow">
+        <ul tabindex="0"
+            class="dropdown-content menu bg-slate-950/85 md:bg-base-100/40 rounded-box z-[1] w-40 p-2 mr-4 shadow">
             <li class="md:text-black"><a (click)="toggleOrder('Old')" [class.active]="ts.orderTodo() === 'Old'">
                     <i class="pi pi-sort-amount-up-alt" style="font-size: 1rem"></i> Oldest
                 </a>
             </li>
-
             <li class="md:text-black"><a (click)="toggleOrder('New')" [class.active]="ts.orderTodo() === 'New'">
                     <i class="pi pi-sort-amount-down-alt" style="font-size: 1rem"></i> Newest
                 </a>
             </li>
+        </ul>
+    </div>
 
+    <div class="dropdown dropdown-left">
+        <div tabindex="0" role="button" (click)="resetInput()" class="btn btn-circle btn-outline btn-lg hover:opacity-20" [class.btn-error]="!!filterInput()">
+            @if(!filterInput()) {
+            <i class="pi pi-filter"></i>
+            }
+            @else {
+            <i class="pi pi-times"></i>
+            }
+        </div>
+        <ul tabindex="0"
+            class="dropdown-content menu bg-slate-950/85 md:bg-base-100/40 rounded-box z-[1] flex-grow p-5 mr-5 -translate-y-5 shadow">
+            <label class="opacity-40 input input-bordered flex items-center gap-2">
+                <input type="text" class="grow" [(ngModel)]="filterInput" placeholder="Search" />
+                <i class="pi pi-search"></i>
+            </label>
         </ul>
     </div>
 </div>

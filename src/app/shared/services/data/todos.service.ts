@@ -3,10 +3,12 @@ import { Todo } from '@shared/models/todo.model';
 import { ApiService } from './api.service';
 import { TodoAction, TodoUpdateAction } from '@shared/models/actions/todo.action';
 import { Order } from '@components/side-menu/side-menu.component';
+import { AlertService } from '../components/alert.service';
 
 @Injectable({ providedIn: 'root' })
 export class TodoService {
     private api = inject(ApiService);
+    private alert = inject(AlertService);
 
     todos = signal<Todo[] | undefined>(undefined);
     selectedTodoId = signal<number>(0);
@@ -16,12 +18,17 @@ export class TodoService {
     filterTodoString = signal<string>("");
 
     _session_id = signal<number>(1);
-    _internal_id = computed(() => this.todos()?.reduce((max, todo) => todo.id > max ? +todo.id : max, -Infinity));
+    _internal_id = computed(() => this.todos()?.reduce((max, todo) => todo.id > max ? +todo.id : max, 0));
 
     constructor() {
         this.api.getTodos()
             .then(todos => this.todos.set(todos))
-            .catch(console.error)
+            .catch(e => {
+                console.error(e);
+                console.log(" test ");
+                this.todos.set([]);
+                this.alert.error("Cannot connect with db: functionalities may be affected")
+            })
             .finally(() => console.log("READY ", this._internal_id(), '   '));
     }
 

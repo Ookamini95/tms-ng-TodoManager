@@ -1,0 +1,4 @@
+<div role="alert" class="alert transition-all duration-300 ring-1 ring-black fixed bottom-10 left-5 w-44 lg:w-[32rem]" [class.opacity-0]="!alert.show()" [class.scale-0]="!alert.show()" [class.alert-success]="status() === 'success'" [class.alert-warning]="status() === 'warning'" [class.alert-error]="status() === 'error'" [class.alert-info]="status() === 'info'">
+    <i class="pi" [class.pi-check-circle]="status() === 'success'" [class.pi-exclamation-triangle]="status() === 'warning'" [class.pi-times-circle]="status() === 'error'" [class.pi-exclamation-circle]="status() === 'info'"></i>
+    <span>{{ message() }}</span>
+</div>

@@ -81,7 +81,7 @@ export class ModalTodoComponent {
         this._closeModal();
     }
     private _closeModal(): void {
-        const modal = (document.getElementById("my_modal_5") as any);
+        const modal = (document.getElementById("todo_modal") as any);
         if (modal) modal.close();
     }
 }

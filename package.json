@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start:json": "npx json-server ./src/app/shared/tests/mock/todo.data.json"
+    "start:json": "npx json-server ./server/todo.data.json"
   },
   "private": true,
   "dependencies": {

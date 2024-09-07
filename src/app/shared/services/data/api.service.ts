@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { catchError, lastValueFrom, of, switchMap, tap, timer } from 'rxjs';
 
-import { lastValueFrom, tap } from 'rxjs';
 import { Todo } from '@shared/models/todo.model';
 import { TodoAction, TodoUpdateAction } from '@shared/models/actions/todo.action';
+import { AlertService } from '../components/alert.service';
 
 // TODO server ep + env
 const baseUrl = `http://localhost:3000/todos/`; // `http://${env.API_HOST}:${env.API_PORT}`;
@@ -13,7 +14,8 @@ const baseUrl = `http://localhost:3000/todos/`; // `http://${env.API_HOST}:${env
 })
 export class ApiService {
   private http = inject(HttpClient);
-  private getRequestHeaders(): HttpHeaders {
+
+  private _headers(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -21,20 +23,23 @@ export class ApiService {
 
   getTodos(): Promise<Todo[]> {
     const getUrl = baseUrl;
-    // TODO: toast "An error has occurred, data may not be correctly saved"
     return lastValueFrom(
-      this.http
-        .get(getUrl, { headers: this.getRequestHeaders() })
-        .pipe(
-          tap(console.log),
-        )
+      timer(1000).pipe(
+        switchMap(_ => {
+          return this.http
+          .get(getUrl, { headers: this._headers() })
+          .pipe(
+            tap(console.log),
+          )
+        })
+      )
     );
   }
   deleteTodo(id: number): Promise<Todo> {
     const deleteUrl = baseUrl + id;
     return lastValueFrom(
       this.http
-        .delete(deleteUrl, { headers: this.getRequestHeaders() })
+        .delete(deleteUrl, { headers: this._headers() })
         .pipe(
           tap(console.log),
         )
@@ -50,7 +55,7 @@ export class ApiService {
           {
             ...a.data
           },
-          { headers: this.getRequestHeaders() })
+          { headers: this._headers() })
         .pipe(
           tap(console.log),
         )
@@ -65,7 +70,7 @@ export class ApiService {
         .patch(
           patchUrl,
           a.data,
-          { headers: this.getRequestHeaders() }
+          { headers: this._headers() }
         )
         .pipe(
           tap(console.log),

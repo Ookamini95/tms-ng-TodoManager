@@ -31,7 +31,7 @@ import { DndEmptyComponent } from './dnd-empty/dnd-empty.component';
 export class DndContainerComponent {
   // TODO output for mutated todo
   // Pending Todos
-  pending = input<Todo[] | undefined>(); // TODO: undefined during loading
+  pending = input<Todo[] | undefined>();
   _initPendingEffect = effect(() => {
     const pending = this.pending();
     this._pendingOrdered.set(pending?.map(x => x.title) ?? []);
@@ -43,7 +43,7 @@ export class DndContainerComponent {
     return sortTodos(pending ?? [], orderedTitles);
   });
   // Active Todos
-  active = input<Todo[] | undefined>(); // TODO: undefined during loading
+  active = input<Todo[] | undefined>();
   _initActiveEffect = effect(() => {
     const active = this.active();
     this._activeOrdered.set(active?.map(x => x.title) ?? []);
@@ -55,7 +55,7 @@ export class DndContainerComponent {
     return sortTodos(active ?? [], orderedTitles);
   })
   // Completed Todos
-  completed = input<Todo[] | undefined>(); // TODO: undefined during loading
+  completed = input<Todo[] | undefined>();
   _initCompletedEffect = effect(() => { 
     const completed = this.completed();
     this._completedOrdered.set(completed?.map(x => x.title) ?? []);
