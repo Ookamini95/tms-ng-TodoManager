@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
   templateUrl: './modal.component.html',
   styleUrl: "./modal.component.css"
 })
-export class ModalComponent {}
+export class ModalComponent {
+  id = input.required<string>();
+  dark = input<boolean>();
+}

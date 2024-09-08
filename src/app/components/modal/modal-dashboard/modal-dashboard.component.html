@@ -1,0 +1,25 @@
+<app-modal [id]="'dashboard_modal'" [dark]="true">    
+        <div class="stats bg-gradient-to-tr from-zinc-800 to-black w-full shadow">
+            <div class="stat">
+                <div class="stat-title">
+                    Work in progress <i class="pi pi-cog pi-spin" style="font-size: 0.85rem;"></i>
+                </div>
+                <div class="text-primary text-center py-4">
+                    <div class="radial-progress text-warning" [style]="style()" role="progressbar">{{ value().toFixed(0) }} %</div>
+                </div>
+                <div class="text-center stat-desc"> {{ workingTodos() }} more tasks to go</div>
+            </div>
+    
+            <div class="stat gap-0">
+                <div class="stat-figure text-success translate-y-0.5">
+                    <i class="pi pi-flag-fill" style="font-size: 2rem;"></i>
+                </div>
+                <div class="stat-title">
+                    Completed <i class="pi pi-bolt" style="font-size: 0.85rem;"></i>
+                </div>
+                <div class="stat-value text-success text-center py-4">{{ completeTodos() }}</div>
+            </div>
+    
+        </div>
+</app-modal>
+    

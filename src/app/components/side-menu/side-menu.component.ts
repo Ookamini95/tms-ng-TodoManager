@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, model } from '@angular/core';
+import { Component, effect, inject, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from '@shared/services/data/todos.service';
 

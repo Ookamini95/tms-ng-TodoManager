@@ -2,7 +2,6 @@ import { Component, inject, input } from '@angular/core';
 import { AlertService } from '@shared/services/components/alert.service';
 
 export type AlertStatus = "warning" | "success" | "error" | "info";
-
 @Component({
     selector: 'app-alert',
     standalone: true,

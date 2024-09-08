@@ -8,6 +8,7 @@ import { ModalTodoComponent } from '@components/modal/modal-todo/modal-todo.comp
 import { SideMenuComponent } from '@components/side-menu/side-menu.component';
 import { AlertComponent } from '@components/alert/alert.component';
 import { AlertService } from '@shared/services/components/alert.service';
+import { ModalDashboardComponent } from '@components/modal/modal-dashboard/modal-dashboard.component';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { AlertService } from '@shared/services/components/alert.service';
     DndContainerComponent,
     DndSlotComponent,
     ModalTodoComponent,
+    ModalDashboardComponent,
     SideMenuComponent,
     AlertComponent
   ],
@@ -37,9 +39,20 @@ export class AppComponent {
   _completed = computed(() => this._sortTodos(this._todos()?.filter(todo => todo.status === "completed" as TodoStatus)));
 
   // Alert
-  _alertStatus = computed(() => this.alert.alertStatus());  
+  _alertStatus = computed(() => this.alert.alertStatus());
   _alertMessage = computed(() => this.alert.alertMessage());
-    
+
+  // Todo stats
+  _todosWorkinProgress = computed(() => {
+    const p = this._pending()?.length || 0;
+    const a = this._active()?.length || 0;
+    return a + p;
+  });
+  _todosCompleted = computed(() => {
+    const c = this._completed()?.length || 0;
+    return c;
+  })
+
   private _filterTodos(todos: Todo[] | undefined) {
     if (!todos || !todos.length) return [];
     const filter = this._filter();
@@ -53,9 +66,9 @@ export class AppComponent {
     return todos.sort((a, b) => {
       switch (order) {
         case 'New':
-          return b.id - a.id;
+          return Number(b.id) - Number(a.id);
         case 'Old':
-          return a.id - b.id;
+          return Number(a.id) - Number(b.id);
         default:
           return 0;
       }

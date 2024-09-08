@@ -1,11 +1,13 @@
-import { CdkDrag } from '@angular/cdk/drag-drop';
+import { AfterViewInit, Component, computed, inject, input, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { AfterViewInit, Component, computed, effect, inject, input, signal } from '@angular/core';
+import { CdkDrag } from '@angular/cdk/drag-drop';
+
 import { EditableInputComponent } from '@components/editable-input/editable-input.component';
+import { DndSlotControlComponent } from './dnd-slot-control/dnd-slot-control.component';
+
 import { Todo } from '@shared/models/todo.model';
 import { TodoService } from '@shared/services/data/todos.service';
-import { DndSlotControlComponent } from './dnd-slot-control/dnd-slot-control.component';
-import { TodoAction, TodoUpdateAction } from '@shared/models/actions/todo.action';
+import { TodoUpdateAction } from '@shared/models/actions/todo.action';
 
 @Component({
   selector: 'app-dnd-slot',
@@ -54,8 +56,9 @@ export class DndSlotComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    const id = +this._id();
     setTimeout(() => {
       this.dropAnimation.set(false);
-    }, this._id() * 100)
+    }, 300)
   }
 }

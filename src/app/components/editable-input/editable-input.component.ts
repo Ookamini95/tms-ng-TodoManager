@@ -1,11 +1,7 @@
 import { Component, computed, ElementRef, HostListener, input, output, signal, viewChild } from '@angular/core';
 import { TodoUpdateAction } from '@shared/models/actions/todo.action';
 
-export type InputType = 
-  | 'text'
-  | 'number'
-  | 'password'
-
+export type InputType = 'text' | 'number' | 'password';
 @Component({
   selector: 'app-editable-input',
   standalone: true,
@@ -15,18 +11,17 @@ export type InputType =
 })
 export class EditableInputComponent {
 
-  todoId = input.required<number>();
+  todoId = input.required<string>();
   inputType = input<InputType>("text");
   inputValue = input<any>("");
 
-  valueChanged = output<TodoUpdateAction>(); // TODO instead use todoservice
+  valueChanged = output<TodoUpdateAction>();
 
   _inputElement = viewChild<ElementRef<HTMLInputElement>>("inputEdit");
   inputElement = computed(() => this._inputElement()?.nativeElement);
 
   _editMode = signal(false);
   _inputType = computed(() => {
-    if (this.inputType() === "password") return this.inputType(); // TODO: password
     return this._editMode() ? this.inputType() : 'text' as InputType;
   });
 

@@ -1,20 +1,15 @@
-import { Component, computed, effect, input, output, Signal, signal, WritableSignal, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, computed, effect, input, output, signal } from '@angular/core';
 import {
   CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
-import { DndSlotComponent } from './dnd-slot/dnd-slot.component';
-import { Todo, TodoStatus } from '@shared/models/todo.model';
-import { sortTodos } from './dnd.utils';
-import { TodoAction, TodoUpdateAction } from '@shared/models/actions/todo.action';
-import { DndEmptyComponent } from './dnd-empty/dnd-empty.component';
 
-// TODO: flicker when dnd from list a to list b [Workaround > deactivated animations with css + deactivated cdkOrdering]
-// https://stackoverflow.com/questions/61559834/element-style-doesnt-apply-when-using-cdkdroplist-angluar-cdk-drag-and-drop
-// https://github.com/angular/components/issues/14703
+import { DndSlotComponent } from './dnd-slot/dnd-slot.component';
+import { DndEmptyComponent } from './dnd-empty/dnd-empty.component';
+import { Todo, TodoStatus } from '@shared/models/todo.model';
+import { TodoUpdateAction } from '@shared/models/actions/todo.action';
+
 
 @Component({
   selector: 'app-dnd-container',
@@ -29,7 +24,6 @@ import { DndEmptyComponent } from './dnd-empty/dnd-empty.component';
   styleUrl: './dnd-container.component.css'
 })
 export class DndContainerComponent {
-  // TODO output for mutated todo
   // Pending Todos
   pending = input<Todo[] | undefined>();
   _initPendingEffect = effect(() => {
@@ -40,7 +34,7 @@ export class DndContainerComponent {
   _pending = computed(() => { // Ordered array for Cdk > sorted by title
     const pending = this.pending();
     const orderedTitles = this._pendingOrdered();
-    return sortTodos(pending ?? [], orderedTitles);
+    return this.sortTodos(pending ?? [], orderedTitles);
   });
   // Active Todos
   active = input<Todo[] | undefined>();
@@ -52,11 +46,11 @@ export class DndContainerComponent {
   _active = computed(() => { // Ordered array for Cdk > sorted by title
     const active = this.active();
     const orderedTitles = this._activeOrdered();
-    return sortTodos(active ?? [], orderedTitles);
+    return this.sortTodos(active ?? [], orderedTitles);
   })
   // Completed Todos
   completed = input<Todo[] | undefined>();
-  _initCompletedEffect = effect(() => { 
+  _initCompletedEffect = effect(() => {
     const completed = this.completed();
     this._completedOrdered.set(completed?.map(x => x.title) ?? []);
   }, { allowSignalWrites: true });
@@ -64,7 +58,7 @@ export class DndContainerComponent {
   _completed = computed(() => {// Ordered array for Cdk > sorted by title
     const completed = this.completed();
     const orderedTitles = this._completedOrdered();
-    return sortTodos(completed ?? [], orderedTitles);
+    return this.sortTodos(completed ?? [], orderedTitles);
   })
 
   onDropTransfer = output<TodoUpdateAction>();
@@ -75,5 +69,15 @@ export class DndContainerComponent {
       data: event.item.data,
       status: event.container.id as TodoStatus,
     })
+  }
+
+  private sortTodos(todos: Todo[], order: string[]) {
+    return todos
+      .slice()
+      .sort((a, b) => {
+        const indexA = order.indexOf(a.title);
+        const indexB = order.indexOf(b.title);
+        return indexA - indexB;
+      });
   }
 }

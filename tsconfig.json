@@ -22,7 +22,8 @@
     "resolveJsonModule": true,
     "paths": {
             "@shared/*": ["./src/app/shared/*"],
-            "@components/*": ["./src/app/components/*"]
+            "@components/*": ["./src/app/components/*"],
+            "@env": ["./src/environments/environment.ts"]
         },
     "lib": [
       "ES2022",

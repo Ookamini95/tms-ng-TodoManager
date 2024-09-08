@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, inject, input, OnInit, signal } from '@angular/core';
+
 import { TodoStatus } from '@shared/models/todo.model';
 import { TodoService } from '@shared/services/data/todos.service';
 
@@ -15,7 +16,7 @@ import { TodoService } from '@shared/services/data/todos.service';
 export class DndSlotControlComponent implements OnInit {
     protected ts = inject(TodoService);
 
-    todoId = input.required<number>();
+    todoId = input.required<string>();
     todoStatus = input.required<TodoStatus>();
     
     _isOpen = signal(false);
@@ -34,7 +35,7 @@ export class DndSlotControlComponent implements OnInit {
     }
     editTodo(e: any) {
         e.preventDefault();
-        this.ts.selectedTodoId.set(this.todoId());
+        this.ts.selectedTodoId.set(+this.todoId());
     }
     deleteTodo(e: any) {
         e.preventDefault();

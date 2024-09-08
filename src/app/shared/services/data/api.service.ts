@@ -1,13 +1,12 @@
+import { environment as env } from '@env';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, lastValueFrom, of, switchMap, tap, timer } from 'rxjs';
+import { lastValueFrom, switchMap, tap, timer } from 'rxjs';
 
 import { Todo } from '@shared/models/todo.model';
 import { TodoAction, TodoUpdateAction } from '@shared/models/actions/todo.action';
-import { AlertService } from '../components/alert.service';
 
-// TODO server ep + env
-const baseUrl = `http://localhost:3000/todos/`; // `http://${env.API_HOST}:${env.API_PORT}`;
+const baseUrl = `http://${env.API_HOST}:${env.API_PORT}/todos/`;
 
 @Injectable({
   providedIn: 'root'

@@ -5,6 +5,7 @@
         (onDropTransfer)="ts.updateTodo($event)" />
 
     <app-modal-todo [todoId]="ts.selectedTodoId()" />
+    <app-modal-dash [completeTodos]="_todosCompleted()" [workingTodos]="_todosWorkinProgress()"/>
 
     <app-side-menu />
 </div>

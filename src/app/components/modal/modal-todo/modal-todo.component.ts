@@ -13,10 +13,13 @@ import { TodoService } from '@shared/services/data/todos.service';
         ReactiveFormsModule
     ]
 })
-
 export class ModalTodoComponent {
     private fb = inject(FormBuilder);
     private ts = inject(TodoService);
+
+    protected _editMode = computed(() => !!this.todoId()); // id starts from 1
+    onClose = output<boolean>();
+
 
     protected todoForm: FormGroup = this.fb.group({
         title: ["", Validators.required],
@@ -38,9 +41,6 @@ export class ModalTodoComponent {
             });
         }
     })
-    protected _editMode = computed(() => !!this.todoId()); // id starts from 1
-
-    onClose = output<boolean>();
 
     handleSubmit(form: FormGroup): void {
         if (form.invalid) return;

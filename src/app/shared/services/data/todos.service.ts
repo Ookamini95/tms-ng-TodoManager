@@ -14,11 +14,11 @@ export class TodoService {
     selectedTodoId = signal<number>(0);
 
     // Side Menu
-    orderTodo = signal<Order>("Old");
+    orderTodo = signal<Order>("New");
     filterTodoString = signal<string>("");
 
     _session_id = signal<number>(1);
-    _internal_id = computed(() => this.todos()?.reduce((max, todo) => todo.id > max ? +todo.id : max, 0));
+    _internal_id = computed(() => this.todos()?.reduce((max, todo) => +todo.id > max ? +todo.id : max, 0));
 
     constructor() {
         this.api.getTodos()
@@ -29,7 +29,7 @@ export class TodoService {
                 this.todos.set([]);
                 this.alert.error("Cannot connect with db: functionalities may be affected")
             })
-            .finally(() => console.log("READY ", this._internal_id(), '   '));
+            .finally(() => console.log("READY"));
     }
 
     private _updateTodo(todo: Todo, a: TodoUpdateAction) {
@@ -43,7 +43,7 @@ export class TodoService {
         return shallow;
     }
     _getTodo(id: number): Todo | undefined {
-        return this.todos()?.find(todo => todo.id === id);
+        return this.todos()?.find(todo => +todo.id === id);
     }
     updateTodo(a: TodoUpdateAction) {
         this.todos.update(prev => {
@@ -51,7 +51,7 @@ export class TodoService {
             return prev.map(todo => todo.id === a.id ? this._updateTodo(todo, a) : todo);
         });
 
-        const newTodo = this._getTodo(a.id)!;
+        const newTodo = this._getTodo(+a.id)!;
         this.api.patchTodo({
             action: "todo/update",
             id: a.id,
@@ -63,7 +63,7 @@ export class TodoService {
         let uuid = this._internal_id() ?? 0;
         uuid += this._session_id();
         this._session_id.update(id => ++id);
-        return uuid;
+        return `${uuid}`;
     }
     makeTodo(a: TodoAction) {
         console.log("new todo: ", a);
@@ -75,6 +75,6 @@ export class TodoService {
 
     deleteTodo(a: TodoAction) {
         this.todos.update(todos => todos?.filter(todo => todo.id !== a.id));
-        this.api.deleteTodo(a.id);
+        this.api.deleteTodo(+a.id);
     }
 }

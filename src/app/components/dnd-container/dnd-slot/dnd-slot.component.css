@@ -1,11 +1,13 @@
 .cdk-drag-placeholder {
-    opacity: 0.2;
+    opacity: 0;
     max-height: 0px;
     overflow: hidden;
 }
 
+
 .drop {
-    animation: dropIn 0.3s ease forwards;
+    pointer-events: none;
+    animation: dropIn 0.33s ease-in-out forwards;
     animation-delay: calc(var(--order) * 300ms);
 }
 
