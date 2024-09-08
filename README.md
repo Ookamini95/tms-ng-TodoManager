@@ -3,7 +3,6 @@
 ## Overview
 The **Todo Management System** is a task management application built with Angular. This app allows users to create, edit, and delete tasks, manage task statuses (To Do, In Progress, Done), and filter or sort tasks efficiently. The UI leverages **TailwindCSS** and **DaisyUI** for styling, and **JSON Server** simulates the backend API for task management operations.
 
-## Features
 
 ### Features:
 - **Task Management**: Users can view a list of tasks with attributes such as Title, Description, and Status.
@@ -52,3 +51,25 @@ Feel free to fork the project, open issues, or submit pull requests to improve t
 
 ## License
 This project is licensed under the MIT License.
+
+MIT License
+
+Copyright (c) 2024 Ookamini95
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
