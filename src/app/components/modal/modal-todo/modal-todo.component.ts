@@ -17,7 +17,7 @@ export class ModalTodoComponent {
     private fb = inject(FormBuilder);
     private ts = inject(TodoService);
 
-    protected _editMode = computed(() => !!this.todoId()); // id starts from 1
+    protected _editMode = computed(() => !!Number(this.todoId()) ); // id starts from 1
     onClose = output<boolean>();
 
 
@@ -39,7 +39,11 @@ export class ModalTodoComponent {
                 status: todo.status,
             });
         } else {
-            this.todoForm.reset();
+            this.todoForm.patchValue({
+                title: '',
+                description: '',
+                status: 'pending',
+            });
         }
     })
 
@@ -69,7 +73,6 @@ export class ModalTodoComponent {
                 ...form.value,
             })
         }
-
         this._resetForm(form);
     }
     _resetForm(form: FormGroup): void {

@@ -1,5 +1,5 @@
 input.ng-touched.ng-invalid,
 input.ng-dirty.ng-invalid {
     border-color: red;
-    background-color: #fdd; /* light red background */
+    background-color: #fdd;
 }

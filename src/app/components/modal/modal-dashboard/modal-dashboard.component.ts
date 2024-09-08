@@ -23,6 +23,7 @@ export class ModalDashboardComponent {
         const total = this._total();
         const w = this.completeTodos();
         const value = w / total;
+        if (isNaN(value)) return 0;
         return Math.floor(value * 100);
     })
     style = computed(() => {
