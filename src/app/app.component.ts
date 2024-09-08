@@ -38,6 +38,9 @@ export class AppComponent {
   _active = computed(() => this._sortTodos(this._todos()?.filter(todo => todo.status === "active" as TodoStatus)));
   _completed = computed(() => this._sortTodos(this._todos()?.filter(todo => todo.status === "completed" as TodoStatus)));
 
+  // Modal
+  _selectedId = computed(() => String(this.ts.selectedTodoId()))
+
   // Alert
   _alertStatus = computed(() => this.alert.alertStatus());
   _alertMessage = computed(() => this.alert.alertMessage());

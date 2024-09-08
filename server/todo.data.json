@@ -1,22 +1,3 @@
 {
-  "todos": [
-    {
-      "id": "1",
-      "title": "asd",
-      "description": "potato",
-      "status": "pending"
-    },
-    {
-      "id": "3",
-      "title": "asddsa",
-      "description": "213",
-      "status": "completed"
-    },
-    {
-      "id": "6",
-      "title": "asdasd",
-      "description": null,
-      "status": "active"
-    }
-  ]
+  "todos": []
 }

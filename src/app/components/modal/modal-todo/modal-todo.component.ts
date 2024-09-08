@@ -27,11 +27,11 @@ export class ModalTodoComponent {
         status: ["pending", Validators.required],
     })
 
-    todoId = input.required<number>();
+    todoId = input.required<string>();
     private _idChangeEffect = effect(() => {
         const id = this.todoId();
         if (this._editMode()) {
-            const todo = this.ts._getTodo(id);
+            const todo = this.ts._getTodo(+id);
             if (!todo) return;
             this.todoForm.patchValue({
                 title: todo.title,
@@ -66,7 +66,7 @@ export class ModalTodoComponent {
                     id,
                     ...form.value
                 },
-                ...form.value
+                ...form.value,
             })
         }
 

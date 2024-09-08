@@ -33,6 +33,7 @@ export class TodoService {
 
     private _updateTodo(todo: Todo, a: TodoUpdateAction) {
         const shallow = { ...todo };
+        console.log(a.description)
         if (a.title)
             shallow.title = a.title;
         if (a.description)
@@ -45,8 +46,10 @@ export class TodoService {
         return this.todos()?.find(todo => +todo.id === id);
     }
     updateTodo(a: TodoUpdateAction) {
+        console.log(a);
         this.todos.update(prev => {
             if (!prev) return [];
+            console.log(prev.map(todo => todo.id === String(a.id) ? this._updateTodo(todo, a) : null));
             return prev.map(todo => todo.id === a.id ? this._updateTodo(todo, a) : todo);
         });
 
