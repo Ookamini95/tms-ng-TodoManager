@@ -3,7 +3,7 @@
         <div class="card bg-slate-200 text-primary-content w-96 hover:shadow-sm hover:shadow-slate-800/70 hover:scale-[0.99] transition-all duration-200">
             <div class="card-body">
                 <app-editable-input [inputType]="'text'" [inputValue]="todo().title" [todoId]="todo().id" (valueChanged)="onEditableTitleChange($event)" />
-                <p class="line-clamp-2">If a dog chews shoes whose shoes does he choose? If a dog chews shoes whose shoes does he choose? If a dog chews shoes whose shoes does he choose?</p>
+                <p class="line-clamp-2 h-12">{{ todo().description }}</p>
                 <div class="card-actions justify-end flex-nowrap w-full">
                     <app-slot-control [todoId]="todo().id" [todoStatus]="todo().status"/>
                 </div>

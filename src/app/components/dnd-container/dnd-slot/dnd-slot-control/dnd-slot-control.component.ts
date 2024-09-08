@@ -13,19 +13,17 @@ import { TodoService } from '@shared/services/data/todos.service';
         NgClass
     ],
 })
-export class DndSlotControlComponent implements OnInit {
+export class DndSlotControlComponent {
     protected ts = inject(TodoService);
 
     todoId = input.required<string>();
     todoStatus = input.required<TodoStatus>();
     
     _isOpen = signal(false);
+
     toggle() {
         this._isOpen.update(prev => !prev);
     }
-
-    ngOnInit() { }
-
     changedStatus(e: any) {
         this.ts.updateTodo({
             action: "todo/update",
@@ -44,7 +42,7 @@ export class DndSlotControlComponent implements OnInit {
             id: this.todoId()
         })
     }
-    openMenuAnimation() {
+    _openMenuAnimation() {
         const baseClasses = "flex justify-center items-center p-2 mask mask-circle transition-all duration-300 "
         if (this._isOpen()) return baseClasses + "bg-slate-400/50";
         return baseClasses + "bg-slate-300 rotate-180";

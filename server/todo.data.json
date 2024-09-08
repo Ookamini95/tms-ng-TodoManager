@@ -2,75 +2,21 @@
   "todos": [
     {
       "id": "1",
-      "status": "pending",
-      "title": "Test 1asd 1232",
-      "description": "lorem ipsum"
-    },
-    {
-      "id": "2",
-      "status": "completed",
-      "title": "Test 2",
-      "description": "lorem ipsum"
+      "title": "asd",
+      "description": "potato",
+      "status": "pending"
     },
     {
       "id": "3",
-      "status": "completed",
-      "title": "Test 3 213",
-      "description": "lorem ipsum asd"
-    },
-    {
-      "id": "4",
-      "status": "completed",
-      "title": "Test 01232",
-      "description": "lorem ipsum"
-    },
-    {
-      "id": "5",
-      "status": "completed",
-      "title": "Test 23",
-      "description": "lorem ipsum"
-    },
-    {
-      "id": "6",
-      "status": "active",
-      "title": "Test 22   22",
-      "description": "lorem ipsum"
-    },
-    {
-      "id": "7",
-      "status": "completed",
-      "title": "Test 7",
-      "description": "lorem ipsum"
-    },
-    {
-      "id": "8",
-      "title": "asd TEST",
-      "description": "",
-      "status": "active"
-    },
-    {
-      "id": "9",
-      "title": "asd TEST",
-      "description": "",
+      "title": "asddsa",
+      "description": "213",
       "status": "completed"
     },
     {
-      "id": "10",
-      "title": "descr len test",
-      "description": "If a dog chews shoes whose shoes does he choose?If a dog chews shoes w",
+      "id": "6",
+      "title": "asdasd",
+      "description": null,
       "status": "active"
-    },
-    {
-      "id": "11",
-      "title": "asd TEST123",
-      "description": "",
-      "status": "pending"
-    },
-    {
-      "id": "12",
-      "title": "12 reeee",
-      "description": "",
-      "status": "pending"
     }
   ]
 }

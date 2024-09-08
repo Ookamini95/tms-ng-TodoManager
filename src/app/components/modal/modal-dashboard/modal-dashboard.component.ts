@@ -22,7 +22,6 @@ export class ModalDashboardComponent {
     value = computed(() => {
         const total = this._total();
         const w = this.completeTodos();
-        console.log(w, total, w / total);
         const value = w / total;
         return Math.floor(value * 100);
     })

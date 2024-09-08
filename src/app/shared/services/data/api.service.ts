@@ -1,3 +1,4 @@
+import c from '@constants'
 import { environment as env } from '@env';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
@@ -23,7 +24,7 @@ export class ApiService {
   getTodos(): Promise<Todo[]> {
     const getUrl = baseUrl;
     return lastValueFrom(
-      timer(1000).pipe(
+      timer(c.DELAY).pipe(
         switchMap(_ => {
           return this.http
           .get(getUrl, { headers: this._headers() })
@@ -62,7 +63,6 @@ export class ApiService {
   }
   patchTodo(a: TodoUpdateAction) {
     const patchUrl = baseUrl + a.id;
-    console.log("patch1", patchUrl);
     if (!a.data) return;
     return lastValueFrom(
       this.http

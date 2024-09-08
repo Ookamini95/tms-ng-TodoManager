@@ -28,27 +28,26 @@ export class ModalTodoComponent {
     })
 
     todoId = input.required<number>();
-    _idChangeEffect = effect(() => {
+    private _idChangeEffect = effect(() => {
         const id = this.todoId();
         if (this._editMode()) {
             const todo = this.ts._getTodo(id);
-            console.log("TODOOOO ", todo);
             if (!todo) return;
             this.todoForm.patchValue({
                 title: todo.title,
                 description: todo.description,
                 status: todo.status,
             });
+        } else {
+            this.todoForm.reset();
         }
     })
 
     handleSubmit(form: FormGroup): void {
         if (form.invalid) return;
-        console.log(form.value);
 
         if (!this._editMode()) {
             const id = this.ts.generateUuid();
-            console.log("id. ", id, "data. ", form.value);
             this.ts.makeTodo({
                 action: "todo/create",
                 id,
@@ -73,8 +72,7 @@ export class ModalTodoComponent {
 
         this._resetForm(form);
     }
-
-    protected _resetForm(form: FormGroup): void {
+    _resetForm(form: FormGroup): void {
         form.reset();
         form.get("status")!.setValue("pending");
         this.onClose.emit(true);

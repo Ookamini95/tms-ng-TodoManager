@@ -1,9 +1,9 @@
+import c from '@constants';
 import { Component, effect, inject, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from '@shared/services/data/todos.service';
 
 export type Order = "New" | "Old" 
-
 @Component({
   selector: 'app-side-menu',
   standalone: true,
@@ -30,7 +30,7 @@ export class SideMenuComponent {
     this.filterInput.set("");
   }
   handleOpenTodoModal() {
-    this.ts.selectedTodoId.set(0);
+    this.ts.selectedTodoId.set(c.NEW_TODO_ID);
   }
   toggleOrder (newOrder: Order) {
     this.ts.orderTodo.set(newOrder);

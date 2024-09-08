@@ -10,6 +10,6 @@ export type AlertStatus = "warning" | "success" | "error" | "info";
 export class AlertComponent {
     protected alert = inject(AlertService);
 
-    status = input<AlertStatus>("info");
     message = input.required<string>();
+    status = input<AlertStatus>("info");
 }

@@ -15,7 +15,7 @@
         opacity: 1;
     }
 }
-/* animation with display are not supported in every browser */
+/* animation with display are not supported in every browser (eg. supported in chrome, not supported in ff) */
 @keyframes vanish {
     from {
         display: block;

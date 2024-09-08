@@ -5,5 +5,4 @@ import { Component } from '@angular/core';
     standalone: true,
     templateUrl: 'dnd-empty.component.html'
 })
-
 export class DndEmptyComponent {}

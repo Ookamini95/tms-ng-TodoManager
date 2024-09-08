@@ -1,13 +1,10 @@
-<!-- <mat-slide-toggle>Toggle me!</mat-slide-toggle> -->
-
 <div class="bg-green-400/50 min-h-screen md:h-full">
     <app-dnd-container [pending]="_pending()" [active]="_active()" [completed]="_completed()"
         (onDropTransfer)="ts.updateTodo($event)" />
+    <app-side-menu />
 
     <app-modal-todo [todoId]="ts.selectedTodoId()" />
-    <app-modal-dash [completeTodos]="_todosCompleted()" [workingTodos]="_todosWorkinProgress()"/>
-
-    <app-side-menu />
+    <app-modal-dash [completeTodos]="_todosCompleted()" [workingTodos]="_todosWorkinProgress()" />
 </div>
 
 <app-alert [status]="_alertStatus()" [message]="_alertMessage()" />

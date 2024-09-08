@@ -17,15 +17,14 @@ export class TodoService {
     orderTodo = signal<Order>("New");
     filterTodoString = signal<string>("");
 
-    _session_id = signal<number>(1);
-    _internal_id = computed(() => this.todos()?.reduce((max, todo) => +todo.id > max ? +todo.id : max, 0));
+    private _session_id = signal<number>(1);
+    private _internal_id = computed(() => this.todos()?.reduce((max, todo) => +todo.id > max ? +todo.id : max, 0));
 
     constructor() {
         this.api.getTodos()
             .then(todos => this.todos.set(todos))
             .catch(e => {
                 console.error(e);
-                console.log(" test ");
                 this.todos.set([]);
                 this.alert.error("Cannot connect with db: functionalities may be affected")
             })
@@ -58,23 +57,20 @@ export class TodoService {
             data: newTodo,
         });
     }
+    makeTodo(a: TodoAction) {
+        if (!a.data) return;
+        this.todos.update(p => [a.data!, ...p!])
+        this.api.postTodo(a);
+    }
+    deleteTodo(a: TodoAction) {
+        this.todos.update(todos => todos?.filter(todo => todo.id !== a.id));
+        this.api.deleteTodo(+a.id);
+    }
 
     generateUuid() {
         let uuid = this._internal_id() ?? 0;
         uuid += this._session_id();
         this._session_id.update(id => ++id);
         return `${uuid}`;
-    }
-    makeTodo(a: TodoAction) {
-        console.log("new todo: ", a);
-        if (!a.data) return;
-        this.todos.update(p => [a.data!, ...p!])
-        this.api.postTodo(a);
-    }
-
-
-    deleteTodo(a: TodoAction) {
-        this.todos.update(todos => todos?.filter(todo => todo.id !== a.id));
-        this.api.deleteTodo(+a.id);
     }
 }

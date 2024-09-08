@@ -25,40 +25,40 @@ import { TodoUpdateAction } from '@shared/models/actions/todo.action';
 })
 export class DndContainerComponent {
   // Pending Todos
-  pending = input<Todo[] | undefined>();
-  _initPendingEffect = effect(() => {
+  public pending = input<Todo[] | undefined>();
+  private _initPendingEffect = effect(() => {
     const pending = this.pending();
     this._pendingOrdered.set(pending?.map(x => x.title) ?? []);
   }, { allowSignalWrites: true });
-  _pendingOrdered = signal<string[]>([]); // Ordered array for Cdk > titles
-  _pending = computed(() => { // Ordered array for Cdk > sorted by title
+  protected _pendingOrdered = signal<string[]>([]); // Ordered array for Cdk > titles
+  protected _pending = computed(() => { // Ordered array for Cdk > sorted by title
     const pending = this.pending();
     const orderedTitles = this._pendingOrdered();
-    return this.sortTodos(pending ?? [], orderedTitles);
+    return this._sortTodos(pending ?? [], orderedTitles);
   });
   // Active Todos
-  active = input<Todo[] | undefined>();
-  _initActiveEffect = effect(() => {
+  public active = input<Todo[] | undefined>();
+  private _initActiveEffect = effect(() => {
     const active = this.active();
     this._activeOrdered.set(active?.map(x => x.title) ?? []);
   }, { allowSignalWrites: true });
-  _activeOrdered = signal<string[]>([]); // Ordered array for Cdk > titles
-  _active = computed(() => { // Ordered array for Cdk > sorted by title
+  protected _activeOrdered = signal<string[]>([]); // Ordered array for Cdk > titles
+  protected _active = computed(() => { // Ordered array for Cdk > sorted by title
     const active = this.active();
     const orderedTitles = this._activeOrdered();
-    return this.sortTodos(active ?? [], orderedTitles);
+    return this._sortTodos(active ?? [], orderedTitles);
   })
   // Completed Todos
-  completed = input<Todo[] | undefined>();
-  _initCompletedEffect = effect(() => {
+  public completed = input<Todo[] | undefined>();
+  private _initCompletedEffect = effect(() => {
     const completed = this.completed();
     this._completedOrdered.set(completed?.map(x => x.title) ?? []);
   }, { allowSignalWrites: true });
-  _completedOrdered = signal<string[]>([]); // Ordered array for Cdk > titles
-  _completed = computed(() => {// Ordered array for Cdk > sorted by title
+  protected _completedOrdered = signal<string[]>([]); // Ordered array for Cdk > titles
+  protected _completed = computed(() => {// Ordered array for Cdk > sorted by title
     const completed = this.completed();
     const orderedTitles = this._completedOrdered();
-    return this.sortTodos(completed ?? [], orderedTitles);
+    return this._sortTodos(completed ?? [], orderedTitles);
   })
 
   onDropTransfer = output<TodoUpdateAction>();
@@ -70,8 +70,7 @@ export class DndContainerComponent {
       status: event.container.id as TodoStatus,
     })
   }
-
-  private sortTodos(todos: Todo[], order: string[]) {
+  _sortTodos(todos: Todo[], order: string[]) {
     return todos
       .slice()
       .sort((a, b) => {

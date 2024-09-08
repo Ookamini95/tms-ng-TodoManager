@@ -23,7 +23,6 @@
                 }
             </div>
         </div>
-        <!-- <div class="divider divider-horizontal -translate-x-14"></div> -->
         <div class="h-full grid-flow-col grid-rows-[auto, 1fr] overflow-clip">
             <h2 class="text-xl w-[28rem] bg-slate-200/20 text-black/40 rounded-badge p-4 my-2" [class.!text-blue-600]="!!active()?.length">Active</h2>
             <div cdkDropListSortingDisabled cdkDropList #activeList="cdkDropList" [cdkDropListData]="_activeOrdered()"
@@ -46,7 +45,6 @@
                 }
             </div>
         </div>
-        <!-- <div class="divider divider-horizontal -translate-x-14"></div> -->
         <div class="h-full grid-flow-col grid-rows-[auto, 1fr] overflow-hidden">
             <h2 class="text-xl w-[28rem] text-black/40 bg-slate-200/20 rounded-badge p-4 my-2" [class.!text-blue-600]="!!completed()?.length">Completed</h2>
             <div cdkDropListSortingDisabled cdkDropList #completedList="cdkDropList"

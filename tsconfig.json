@@ -23,7 +23,8 @@
     "paths": {
             "@shared/*": ["./src/app/shared/*"],
             "@components/*": ["./src/app/components/*"],
-            "@env": ["./src/environments/environment.ts"]
+            "@env": ["./src/environments/environment.ts"],
+            "@constants": ["./src/app/shared/constants.ts"]
         },
     "lib": [
       "ES2022",
