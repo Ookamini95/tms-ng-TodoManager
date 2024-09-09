@@ -50,4 +50,4 @@ To get started with this project, follow these steps:
 Feel free to fork the project, open issues, or submit pull requests to improve the functionality or design.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. 
