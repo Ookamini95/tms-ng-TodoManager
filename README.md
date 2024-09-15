@@ -46,6 +46,14 @@ To get started with this project, follow these steps:
 - **Prettier**: Code formatting tool.
 
 
+#### Meta todos
+
+!! In this project I've chosen the new reactive primiteve signal over RxJS for a cleaner and more maintainable codebase. While this approach streamlined development, incorporating RxJS pipes and controlled data handling in future updates could further enhance performance and user experience.
+
+! Tests
+
+! UI improvements
+
 ## Contributions
 Feel free to fork the project, open issues, or submit pull requests to improve the functionality or design.
 
